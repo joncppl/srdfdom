@@ -34,6 +34,8 @@ add_library(${PROJECT_NAME} SHARED
   src/srdf_writer.cpp
 )
 
+set_target_properties(${PROJECT_NAME} PROPERTIES WINDOWS_EXPORT_ALL_SYMBOLS TRUE)
+
 #System dependencies
 target_link_libraries(${PROJECT_NAME} PUBLIC ${TinyXML2_LIBRARIES})
 
@@ -45,7 +47,9 @@ ament_target_dependencies(${PROJECT_NAME} PUBLIC
 )
 
 install(TARGETS ${PROJECT_NAME}
-  DESTINATION lib
+  LIBRARY DESTINATION lib
+  ARCHIVE DESTINATION lib
+  RUNTIME DESTINATION bin
 )
 install(DIRECTORY include/${PROJECT_NAME}/
   DESTINATION include/${PROJECT_NAME}
